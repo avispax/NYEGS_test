@@ -1,0 +1,10 @@
+version: "3"
+services:
+  nginx:
+    build: ./docker/nginx    #Dockerfileに任せる
+    ports:
+      - "8080:80"   #8080を80にポートマッピング http://localhost:8080 で動く。
+    restart: always
+    container_name: nginx01
+    volumes:
+        - ./html/:/usr/share/nginx/html/    # 「html」のディレクトリ内容をlinux?上のそこにマウントするので、「html」配下が即時反映される仕組み。
