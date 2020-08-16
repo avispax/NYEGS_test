@@ -10,13 +10,11 @@ WORKDIR /usr/src/vue
 RUN apk update && \
     npm install && \
     npm install -g npm && \
-    npm install -g vue-cli
+    npm install -g @vue/cli \
+     npm install -D webpack webpack-cli babel-loader @babel/core @babel/preset-env
+
 
 # カレントワーキングディレクトリ(つまり 'app' フォルダ)にプロジェクトのファイルやフォルダをコピーする
 #COPY . .
 
-# 本番向けに圧縮しながらアプリケーションをビルドする
-#RUN npm run build
-
-#EXPOSE 9000
-#CMD [ "http-server", "dist" ]
+CMD ["npm" "run" "duild2"]

@@ -2,21 +2,26 @@ version: "3"
 services:
   nginx:
     container_name: nginx01
-    build: ./docker/nginx    #Dockerfileに任せる
+    build: ./nginx    #Dockerfileに任せる
     ports:
-      - "8080:80"   #8080を80にポートマッピング http://localhost:8080 で動く。
+      - "9000:80"   #9000を80にポートマッピング http://localhost:9000 で動く。
     restart: always
     volumes:
-        - ./html/:/usr/share/nginx/html/    # 「html」のディレクトリ内容をlinux?上のそこにマウントするので、「html」配下が即時反映される仕組み。
+        #- ./html/:/usr/share/nginx/html/    # 「html」のディレクトリ内容をlinux?上のそこにマウントするので、「html」配下が即時反映される仕組み。
+        - ./data/www:/var/www/html
+        - ./nginx/myServer.conf /etc/nginx/conf.d/myServer.conf
+#        - ./nginx/server.conf:/etc/nginx/nginx.conf
 
   vue:
     container_name: vue
-    build: ./docker/Vue
-    ports:
-      - "9000:9000"
+    build: ./vue
+    # ports:
+    #   - "9000:9000"
     volumes:
-      - ./vue:/usr/src/vue
+      - ./data/www:/app
+      # - ./vue:/usr/src/vue
+      # - /usr/src/vue/node_modules
     tty: true
-    stdin_open: true
-    command: npm run dev
+    # stdin_open: true
+    # command: npm run dev
     
