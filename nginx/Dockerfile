@@ -1,3 +1,4 @@
 FROM nginx:latest
-LABEL maintainer="omy <avie.ex@gmail.com>"
-#COPY myServer.conf /etc/nginx/conf.d/myServer.conf
+
+RUN apt-get update && \
+    apt-get install -y vim less
