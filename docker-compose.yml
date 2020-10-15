@@ -16,14 +16,3 @@ services:
     volumes:
       - ./data/www:/app
     tty: true
-
-  python3:
-    container_name: python3
-    restart: always
-    build: ./python3
-    working_dir: '/root/'
-    tty: true
-    volumes:
-      - ./python3:/root/opt
-    #docker-compose exec python3 bash
-    #python aaa.py
